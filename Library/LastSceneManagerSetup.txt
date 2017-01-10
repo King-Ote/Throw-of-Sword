@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Throw of Sword.unity
+  isLoaded: 1
+  isActive: 1
