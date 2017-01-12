@@ -12,15 +12,12 @@ public class PlayerProjMover : ProjMover {
             transform.position.z);
     }
 
-    protected void OnTriggerEnter(Collider collider) {
-        Debug.Log("WOW!!!");
+    /* Should probably have this eventually?
+    void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.CompareTag("Enemy")) {
             Impact();
         }
     }
-
-    public override void Impact () {
-        Destroy(gameObject);
-    }
+    */
 }
 

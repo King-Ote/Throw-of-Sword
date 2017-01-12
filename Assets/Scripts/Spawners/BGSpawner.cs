@@ -5,9 +5,11 @@ using UnityEngine;
 public class BGSpawner : MonoBehaviour {
 
     public GameObject bgObject;
+    public float spawnHeight = 0;
     public float minDelay = 0.01f;
     public float maxDelay = 0.3f;
 
+    protected float initTime = 0f;
     protected float screenWidth = 0f;
     protected float screenHeight = 0f;
     protected float lastSpawnTime = 0f;
@@ -20,20 +22,32 @@ public class BGSpawner : MonoBehaviour {
         screenWidth = GetComponent<Renderer>().bounds.size.x;
         screenHeight = GetComponent<Renderer>().bounds.size.y;
         lastSpawnTime = Time.time;
+        initTime = lastSpawnTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - lastSpawnTime > spawnDelay) {
+		Spawn();
+	}
+
+    void Spawn () {
+        if ((spawnDelay >= 0) & (Time.time - lastSpawnTime > spawnDelay)) {
             // Spawn a background item
             spawnXPos = Random.Range(-screenWidth/2f, screenWidth/2f);
-            spawnPosition = new Vector3(spawnXPos, screenHeight/2f+0.5f, 0f);
-            Instantiate(bgObject, spawnPosition, new Quaternion(0f,0f,0f,0f),
-                transform);
+            spawnPosition = new Vector3(spawnXPos,
+                screenHeight/2f+0.5f, spawnHeight);
+            Instantiate(bgObject, spawnPosition,
+                new Quaternion(0f,0f,0f,0f), transform);
 
             // Prep for next spawn
             lastSpawnTime = Time.time;
-            spawnDelay = Random.Range(0.01f, 0.3f);
+            UpdateSpawnDelay();
         }
-	}
+    }
+
+    public virtual void UpdateSpawnDelay() {
+        // Use this to disable spawning - won't spawn with spawnDelay < 0
+        // Or just increase spawn rate as game goes on
+        spawnDelay = Random.Range(minDelay, maxDelay);
+    }
 }

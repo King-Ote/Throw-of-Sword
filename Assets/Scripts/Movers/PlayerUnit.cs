@@ -21,8 +21,14 @@ public class PlayerUnit : UnitControl {
         newPos = transform.position + move * speed * Time.deltaTime;
         newPos.x = Mathf.Max(Mathf.Min(newPos.x, xBound), -xBound);
         newPos.y = Mathf.Max(Mathf.Min(newPos.y, yBound), -yBound);
-        transform.position = new Vector3(newPos.x, newPos.y, newPos.z);
+        UpdatePosition(new Vector3(newPos.x, newPos.y, newPos.z));
 
         FlipSprite(move);
+    }
+
+    void OnTriggerEnter2D (Collider2D collider) {
+        if (collider.gameObject.CompareTag("Enemy")) {
+            Destroy(gameObject);
+        }
     }
 }

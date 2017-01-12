@@ -5,9 +5,9 @@ using UnityEngine;
 public class ProjSpawner : MonoBehaviour {
 
     public GameObject projectile;
+    public float spawnDelay = 0.5f;
 
     protected float lastSpawnTime = 0f;
-    protected float spawnDelay = 0.5f;
     protected GameObject lastProjectile;
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class ProjSpawner : MonoBehaviour {
 		if (ReadyToFire()) {
             // Firreee!!!
             Vector3 spawnPos = new Vector3(transform.position.x,
-                transform.position.y, 0f);
+                transform.position.y, -2f);
             lastProjectile = Instantiate(projectile, spawnPos,
                 new Quaternion(0f,0f,0f,0f));
             // Prep for next spawn

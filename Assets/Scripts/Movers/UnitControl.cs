@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitControl : MonoBehaviour {
 
-    public float speed = 1f;
+    public float speed = 0.5f;
     public float frameDelay = 0.3f;
     public Sprite[] baseSprites;
     
@@ -12,7 +12,6 @@ public class UnitControl : MonoBehaviour {
     protected int frameCounter = 0;
     protected Vector3 tempScale;
 	
-	// Update is called once per frame
 	void Update () {
         Animate();
         Move();
@@ -20,12 +19,13 @@ public class UnitControl : MonoBehaviour {
     }
 
     public virtual void Move () {
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        UpdatePosition(transform.position+Vector3.down*speed*Time.deltaTime);
     }
 
     public virtual void Animate () {
-        if (Time.time - lastFrameTime >= frameDelay) {
-            frameCounter = (frameCounter+1) % baseSprites.Length;
+        int numSprites = baseSprites.Length;
+        if ((numSprites > 0) & (Time.time - lastFrameTime >= frameDelay)) {
+            frameCounter = (frameCounter+1) % numSprites;
             GetComponent<SpriteRenderer>().sprite = baseSprites[frameCounter];
             lastFrameTime = Time.time;    
         }
@@ -46,5 +46,19 @@ public class UnitControl : MonoBehaviour {
             tempScale.x = Mathf.Abs(tempScale.x);
         }
         transform.localScale = tempScale;
+    }
+
+    protected void UpdatePosition (Vector3 newPos) {
+        // Things closer to the bottom should be on top, visually
+        // Linear interpolation assumes screen from 5 to -5
+        // newPos.z = 0.5f * (newPos.y-5f)/10f;
+
+        Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        if (rigidbody != null) {
+            ///rigidbody.MovePosition(new Vector2 (newPos.x, newPos.y)); ??
+            rigidbody.MovePosition(newPos);
+        } else {
+            transform.position = newPos;
+        }
     }
 }

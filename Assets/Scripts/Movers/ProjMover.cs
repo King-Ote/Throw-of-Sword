@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProjMover : UnitControl {
 
+    public GameObject splode; //What gets spawned when this explodes
+
     protected Vector3 destination;
     protected bool singleDestCheck = true;
     
@@ -20,9 +22,9 @@ public class ProjMover : UnitControl {
         // Go in the direction of destination, unless closer then time*speed
         // If so, just snap to destination!
         if (move.magnitude > Time.deltaTime * speed) {
-            transform.position += move.normalized * Time.deltaTime * speed;
+            UpdatePosition(transform.position+move.normalized*speed*Time.deltaTime);
         } else {
-            transform.position = destination;
+            UpdatePosition(destination);
             Impact();
         }
         FlipSprite(move);
@@ -33,6 +35,10 @@ public class ProjMover : UnitControl {
     }
 
     public virtual void Impact () {
+        // rotation may not be all the way around z. wtf is a Quaternion?
+        Quaternion newRotation = new Quaternion(0f, 0f, Random.Range(0f, Mathf.PI*2f), 1f);
+        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, 0f);
+        Instantiate(splode, newPosition, newRotation);
         Destroy(gameObject);
     }
 }

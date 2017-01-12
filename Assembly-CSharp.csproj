@@ -46,16 +46,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BGMover.cs" />
-     <Compile Include="Assets\Scripts\BGSpawner.cs" />
-     <Compile Include="Assets\Scripts\GobboMover.cs" />
-     <Compile Include="Assets\Scripts\HomingProjMover.cs" />
-     <Compile Include="Assets\Scripts\PlayerProjMover.cs" />
-     <Compile Include="Assets\Scripts\PlayerProjSpawner.cs" />
-     <Compile Include="Assets\Scripts\PlayerUnit.cs" />
-     <Compile Include="Assets\Scripts\ProjMover.cs" />
-     <Compile Include="Assets\Scripts\ProjSpawner.cs" />
-     <Compile Include="Assets\Scripts\UnitControl.cs" />
+     <Compile Include="Assets\Scripts\Movers\BGMover.cs" />
+     <Compile Include="Assets\Scripts\Movers\GobboMover.cs" />
+     <Compile Include="Assets\Scripts\Movers\HomingProjMover.cs" />
+     <Compile Include="Assets\Scripts\Movers\PlayerProjMover.cs" />
+     <Compile Include="Assets\Scripts\Movers\PlayerUnit.cs" />
+     <Compile Include="Assets\Scripts\Movers\ProjMover.cs" />
+     <Compile Include="Assets\Scripts\Movers\UnitControl.cs" />
+     <Compile Include="Assets\Scripts\PeriodicNoise.cs" />
+     <Compile Include="Assets\Scripts\Spawners\BGSpawner.cs" />
+     <Compile Include="Assets\Scripts\Spawners\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Spawners\PlayerProjSpawner.cs" />
+     <Compile Include="Assets\Scripts\Spawners\ProjSpawner.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
