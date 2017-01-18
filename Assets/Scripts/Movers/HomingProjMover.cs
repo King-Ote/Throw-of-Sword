@@ -10,6 +10,12 @@ public class HomingProjMover : ProjMover {
 	}
 	
     public override void GetDestination() {
-        destination = GameObject.FindGameObjectWithTag("Player").transform.position;   
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player) {
+            destination = player.transform.position;   
+        } else {
+            destination = new Vector3 (transform.position.x, -5,
+                transform.position.z);
+        }
     } 
 }

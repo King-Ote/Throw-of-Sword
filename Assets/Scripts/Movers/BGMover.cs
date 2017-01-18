@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BGMover : UnitControl {
 
-    ///protected float oob = 0f; // Out Of Bounds - y value when offscreen 
+    protected bool spriteChosen = false;
 
-	// Use this for initialization
-	void Start () {
-		transform.GetComponent<SpriteRenderer>().sprite = baseSprites[Random.Range (0, baseSprites.Length-1)];
-    	baseSprites = new Sprite[0];
+	public override void Animate () {
+        if (!spriteChosen) {
+            // Apply a random sprite from the provided list
+    		transform.GetComponent<SpriteRenderer>().sprite = baseSprites[Random.Range (0, baseSprites.Count-1)];
+            spriteChosen = true;
+        }
     }
 }

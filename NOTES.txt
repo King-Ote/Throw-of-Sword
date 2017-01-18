@@ -2,3 +2,25 @@ z coords:
 bg = 0
 units = -1
 projs = -2
+
+
+
+
+
+
+THINGS 2 ADD:
+*Sound
+*Reset button (menu overlay?)
+Score
+Different Enemies
+*Transparency
+Powerups
+
+Levels?
+
+Weapon health?
+*Comrades?
+Different Characters?
+Bosses?
+
+After * marked items, show to Arnold
