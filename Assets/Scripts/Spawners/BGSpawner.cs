@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BGSpawner : MonoBehaviour {
 
-    public GameObject bgObject;
+    public GameObject spawnedObject;
     public float spawnHeight = 0;
     public float minDelay = 0.01f;
     public float maxDelay = 0.3f;
+    public float startDelay = 0f;
 
     protected float initTime = 0f;
     protected float screenWidth = 0f;
@@ -27,7 +28,9 @@ public class BGSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Spawn();
+        if ((Time.time - initTime) >= startDelay) {
+            Spawn();   
+        }
 	}
 
     void Spawn () {
@@ -36,7 +39,7 @@ public class BGSpawner : MonoBehaviour {
             spawnXPos = Random.Range(-screenWidth/2f, screenWidth/2f);
             spawnPosition = new Vector3(spawnXPos,
                 screenHeight/2f+0.5f, spawnHeight);
-            Instantiate(bgObject, spawnPosition,
+            Instantiate(spawnedObject, spawnPosition,
                 new Quaternion(0f,0f,0f,0f), transform);
 
             // Prep for next spawn

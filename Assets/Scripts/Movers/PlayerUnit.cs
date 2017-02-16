@@ -52,7 +52,7 @@ public class PlayerUnit : UnitControl {
     }
 
     void OnTriggerStay2D (Collider2D collider) {
-        if (collider.gameObject.CompareTag("Enemy")) {
+        if (collider.gameObject.CompareTag("Enemy") | collider.gameObject.CompareTag("EnemyProj")) {
             Destroy(gameObject);
         }
     }

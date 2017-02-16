@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ProjMover : UnitControl {
 
-    public GameObject splode; //What gets spawned when this explodes
+    public GameObject splode; //What gets spawned when this explodes. Don't provide anything and it'll skip this
 
-    protected Vector3 destination;
+    protected GameObject player;
+    public Vector3 destination;
     protected bool singleDestCheck = true;
     
     // Use this for initialization
     void Start () {
-        GetDestination(); //Can replace w/ singleDestCheck = true
+        player = GameObject.FindGameObjectWithTag("Player");
+        GetDestination(); //Can replace w/ singleDestCheck = false to make it home
     }
 
     public override void Move () {
@@ -31,14 +33,22 @@ public class ProjMover : UnitControl {
     }
 
     public virtual void GetDestination() {
-        destination = transform.position;
-    }
+        if (player) {
+            destination = new Vector3 (player.transform.position.x,
+                player.transform.position.y, transform.position.z);   
+        } else {
+            destination = new Vector3 (transform.position.x, -5,
+                transform.position.z);
+        }
+    } 
 
     public virtual void Impact () {
         // rotation may not be all the way around z. wtf is a Quaternion?
         Quaternion newRotation = new Quaternion(0f, 0f, Random.Range(0f, Mathf.PI*2f), 1f);
         Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, 0f);
-        Instantiate(splode, newPosition, newRotation);
+        if (splode) {
+            Instantiate(splode, newPosition, newRotation);
+        }
         Destroy(gameObject);
     }
 }

@@ -49,11 +49,13 @@
      <Compile Include="Assets\Scripts\Movers\BGMover.cs" />
      <Compile Include="Assets\Scripts\Movers\GobboMover.cs" />
      <Compile Include="Assets\Scripts\Movers\HomingProjMover.cs" />
+     <Compile Include="Assets\Scripts\Movers\InfProjMover.cs" />
      <Compile Include="Assets\Scripts\Movers\PlayerProjMover.cs" />
      <Compile Include="Assets\Scripts\Movers\PlayerUnit.cs" />
      <Compile Include="Assets\Scripts\Movers\ProjMover.cs" />
      <Compile Include="Assets\Scripts\Movers\UnitControl.cs" />
      <Compile Include="Assets\Scripts\PeriodicNoise.cs" />
+     <Compile Include="Assets\Scripts\ScoreTracker.cs" />
      <Compile Include="Assets\Scripts\Spawners\BGSpawner.cs" />
      <Compile Include="Assets\Scripts\Spawners\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Spawners\PlayerProjSpawner.cs" />
